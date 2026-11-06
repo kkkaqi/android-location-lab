@@ -1,0 +1,12 @@
+<resources>
+    <color name="ink">@android:color/system_neutral1_50</color>
+    <color name="secondary_ink">@android:color/system_neutral1_300</color>
+    <style name="AppTheme" parent="android:style/Theme.Material.NoActionBar">
+        <item name="android:fontFamily">sans</item>
+        <item name="android:colorAccent">@android:color/system_accent1_200</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
+        <item name="android:windowBackground">@android:color/system_neutral1_900</item>
+        <item name="android:windowActionModeOverlay">true</item>
+    </style>
+</resources>

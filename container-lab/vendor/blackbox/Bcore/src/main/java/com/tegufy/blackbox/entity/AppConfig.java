@@ -1,0 +1,68 @@
+package com.tegufy.blackbox.entity;
+
+import android.os.IBinder;
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import com.tegufy.blackbox.core.system.user.BUserProfileConfig;
+
+
+public class AppConfig implements Parcelable {
+    public static final String KEY = "BlackBox_client_config";
+
+    public String packageName;
+    public String processName;
+    public int bpid;
+    public int buid;
+    public int uid;
+    public int userId;
+    public int callingBUid;
+    public IBinder token;
+    /** Per-profile device spoof + xposed config — loaded by host, applied in virtual process. */
+    public BUserProfileConfig profileConfig;
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.packageName);
+        dest.writeString(this.processName);
+        dest.writeInt(this.bpid);
+        dest.writeInt(this.buid);
+        dest.writeInt(this.uid);
+        dest.writeInt(this.userId);
+        dest.writeInt(this.callingBUid);
+        dest.writeStrongBinder(token);
+        dest.writeParcelable(this.profileConfig, flags);
+    }
+
+    public AppConfig() {
+    }
+
+    protected AppConfig(Parcel in) {
+        this.packageName = in.readString();
+        this.processName = in.readString();
+        this.bpid = in.readInt();
+        this.buid = in.readInt();
+        this.uid = in.readInt();
+        this.userId = in.readInt();
+        this.callingBUid = in.readInt();
+        this.token = in.readStrongBinder();
+        this.profileConfig = in.readParcelable(BUserProfileConfig.class.getClassLoader());
+    }
+
+    public static final Parcelable.Creator<AppConfig> CREATOR = new Parcelable.Creator<AppConfig>() {
+        @Override
+        public AppConfig createFromParcel(Parcel source) {
+            return new AppConfig(source);
+        }
+
+        @Override
+        public AppConfig[] newArray(int size) {
+            return new AppConfig[size];
+        }
+    };
+}

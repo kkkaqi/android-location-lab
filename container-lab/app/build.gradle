@@ -1,0 +1,18 @@
+plugins { id 'com.android.application' }
+android {
+    namespace 'app.containerlab'
+    compileSdk 35
+    ndkVersion '28.2.13676358'
+    defaultConfig {
+        applicationId 'app.containerlab'
+        minSdk 28
+        // The virtualization core relies on legacy hidden-API behavior.
+        // This is a compatibility experiment, not a store-targeted production app.
+        targetSdk 28
+        versionCode 11
+        versionName '0.2.4'
+        ndk { abiFilters 'arm64-v8a' }
+    }
+    compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
+}
+dependencies { implementation project(':Bcore') }

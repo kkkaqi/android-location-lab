@@ -1,0 +1,17 @@
+plugins { id 'com.android.application' }
+
+android {
+    namespace 'app.fixedlocation'
+    compileSdk 35
+    defaultConfig {
+        applicationId 'app.fixedlocation'
+        minSdk 31
+        targetSdk 35
+        versionCode 2
+        versionName '1.0.1'
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
